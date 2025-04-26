@@ -1,5 +1,7 @@
 import sys
 
 # appending to python path so can import files outside 
-sys.path.append("../")
-sys.path.append("../../")
+def append_path():
+    sys.path.append("../")
+    sys.path.append("../../")
+append_path()
