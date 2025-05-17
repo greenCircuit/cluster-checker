@@ -1,0 +1,3 @@
+include:
+- gitlab.dev.local/pipeline-catalog/pipelines/defaults/stages.yaml
+- gitlab.dev.local/pipeline-catalog/pipelines/security/security.yaml
