@@ -8,11 +8,12 @@ api = client.CustomObjectsApi()
 
 # status struct that holds status of k8s objects
 class Status:
-    def __init__(self, name, ns, status, condition):
+    def __init__(self, name, ns, status, condition, object):
         self.name = name
         self.ns = ns
         self.status = status
         self.condition = condition
+        self.object = object
 
     def __str__(self):
         return (f"Name: {self.name}, Namespace: {self.ns}, Status: {self.status}, Condition: {self.condition}")
@@ -40,7 +41,7 @@ def get_all_pods():
     pass_pods = []
     pods = v1.list_pod_for_all_namespaces(watch=False)
     for pod in pods.items:
-        pod_status = Status(pod.metadata.name, pod.metadata.namespace, bool(pod.status.conditions[0].status), "")
+        pod_status = Status(pod.metadata.name, pod.metadata.namespace, bool(pod.status.conditions[0].status), "", "pod")
         if pod_status.status == True:
             pass_pods.append(pod_status)
         else:
@@ -59,7 +60,7 @@ def get_crs(group, version, plural, ns):
         condition = cr["status"]["conditions"][0]
         status = bool(condition.get("status"))
         message = condition.get("message")
-        status = Status(cr["metadata"]["name"], cr["metadata"]["namespace"], status, message) 
+        status = Status(cr["metadata"]["name"], cr["metadata"]["namespace"], status, message, plural) 
         status.__str__()
         if status.status == True:
             pass_obj.append(status)
