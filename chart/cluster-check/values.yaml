@@ -1,0 +1,26 @@
+# Default values for cluste-check.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+
+image:
+  repository: registry.dev.local/homelab/cluster-checker
+  tag: "latest"
+  pullPolicy:  Always
+
+schedule: "0 9 * *"  # everyday at 9 am
+command: ["/bin/bash"]
+args: ["/app/entrypoint.sh"]
+# can put secrets. Ex. slack token to send notifications
+# need to create secret manually 
+# name of secret and the value of the secret
+secretsEnv: false
+secrets:
+  robot-secrets: SLACK_URL
+
+env: 
+  OUTPUT_DIR: "/shared"       # TODO: where things will be saved
+  NOTIFY: "true"        # TODO: allow notifications or not 
+
+# TODO save reports on host 
+hostPath: "/myHostDir"    

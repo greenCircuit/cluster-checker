@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cluster-check 
+spec:
+  schedule: "{{ .Values.schedule }}"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: robot-account 
+          containers:
+          - name: runner 
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
+            command: {{ .Values.command | toJson }} 
+            args: {{ .Values.args | toJson }}
+            env:
+            {{- range $key, $value := .Values.env }}
+              - name: {{ $key }}
+                values: {{ $value }}
+            {{- end }}
+            {{ if .Values.secretsEnv }}
+            {{- range $name, $value := .Values.secrets}}
+              - name: {{ $value }} 
+                valueFrom:
+                  secretKeyRef:
+                    name: {{ $name }}
+                    key: {{ $value }} 
+            {{- end }}
+            {{- end }}
+          restartPolicy: OnFailure
