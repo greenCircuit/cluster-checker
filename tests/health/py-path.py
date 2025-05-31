@@ -4,4 +4,7 @@ import sys
 def append_path():
     sys.path.append("../")
     sys.path.append("../../")
+    # where to find python files if running inside pod
+    sys.path.append("app/")
+    sys.path.append("app/tests")
 append_path()

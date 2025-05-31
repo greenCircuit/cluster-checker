@@ -2,7 +2,11 @@ from kubernetes import client, config
 import json
 
 # Configs can be set in Configuration class directly or using helper utility
-config.load_kube_config()
+try:
+    config.load_kube_config()
+except:
+    config.load_incluster_config()
+
 v1 = client.CoreV1Api()
 api = client.CustomObjectsApi()
 

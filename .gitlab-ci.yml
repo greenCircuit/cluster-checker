@@ -1,3 +1,27 @@
+variables:
+  SEMVER: "0.0.1"
+  UPDATE_REPO: "false"
+
 include:
-- http://gitlab.dev.local/pipeline-catalog/pipelines/defaults/stages.yaml
-- http://gitlab.dev.local/pipeline-catalog/pipelines/security/security.yaml
+  - project: homelab/pipeline-catalog
+    file: pipelines/release.yaml
+  - project: homelab/pipeline-catalog
+    file: pipelines/security.yaml
+  - project: homelab/pipeline-catalog
+    file: pipelines/stages.yaml
+
+git-leaks:
+  extends: .secrets_scan
+
+semver:
+  extends: .make-semver
+
+create-changelog:
+  extends: .changelog
+  variables:
+    version: "${SEMVER}"
+
+tag-repo:
+  extends: .create-tag
+  variables:
+    GIT_TAG: "${SEMVER}"
