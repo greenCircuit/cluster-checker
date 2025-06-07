@@ -10,7 +10,7 @@ image:
 
 schedule: "0 9 * * *"  # everyday at 9 am
 command: ["/bin/bash"]
-args: ["/app/scripts/entrypoint.sh"]
+args: ["cd /app", "scripts/entrypoint.sh"]
 
 # can put secrets. Ex. slack token to send notifications
 # need to create secret manually 
