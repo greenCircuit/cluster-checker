@@ -7,3 +7,4 @@ failed*.json
 # python
 venv/
 __pycache__/
+.vscode
