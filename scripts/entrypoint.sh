@@ -1,3 +1,3 @@
 #!/bin/bash
 robot .
-python3 ./scripts/parse_results.py
+#python3 ./scripts/parse_results.py

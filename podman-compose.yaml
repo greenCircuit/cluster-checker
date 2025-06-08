@@ -1,0 +1,10 @@
+
+version: '3.7'
+services:
+  robot:
+    container_name: robot
+    command: sleep infinity
+    image: registry.dev.local/homelab/cluster-checker:latest
+    volumes:
+    - ./:/shared
+    network_mode: host

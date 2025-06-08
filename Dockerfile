@@ -1,7 +1,7 @@
 FROM docker.io/python:latest
 # Set working directory
 WORKDIR /app
-
+RUN apt-get update && apt-get install -y bash
 # Copy everything into the image
 COPY . .
 

@@ -5,7 +5,7 @@ metadata:
 subjects:
   - kind: ServiceAccount   
     name: robot-account  
-    namespace: robot   
+    namespace: {{ .Release.Namespace }} 
 roleRef:
   kind: ClusterRole
   name: robot-k8s-roles
@@ -18,7 +18,7 @@ metadata:
 subjects:
   - kind: ServiceAccount   
     name: robot-account  
-    namespace: robot   
+    namespace: {{ .Release.Namespace }} 
 roleRef:
   kind: ClusterRole
   name: robot-flux-read

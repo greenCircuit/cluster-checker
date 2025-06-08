@@ -3,6 +3,7 @@ log.html
 report.html
 output.xml
 failed*.json
+*json
 # python
 venv/
 __pycache__/

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: robot-test 
+  namespace: services
+  labels:
+    app: robot 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: robot 
+  template:
+    metadata:
+      labels:
+        app: robot 
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      serviceAccount: robot-account
+      containers:
+      - name: robot 
+        image: registry.dev.local/homelab/cluster-checker:latest
+        command: ["/bin/bash", "-c"]
+        args: 
+        - sleep infinity
