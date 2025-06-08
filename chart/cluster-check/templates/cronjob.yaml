@@ -2,11 +2,16 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: cluster-check 
+  annotations:
+    sidecar.istio.io/inject: "false"  # disable istio so delete pod when job is done
 spec:
   schedule: "{{ .Values.schedule }}"
   jobTemplate:
     spec:
       template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
         spec:
           serviceAccountName: robot-account 
           containers:

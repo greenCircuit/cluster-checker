@@ -16,7 +16,7 @@ args: [" /app/scripts/entrypoint.sh"]
 # need to create secret manually 
 # name of secret and the value of the secret
 secretsEnv: 
-  enabled: true
+  enabled: true 
   secrets:  
     robot-secrets: SLACK_URL
 
