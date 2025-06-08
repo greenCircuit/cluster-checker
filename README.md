@@ -22,7 +22,7 @@ Wanted to send daily notifications with the state of my cluster. Don't go to gra
 - Wanted to capture status fields of objects so notifications would include why things are failing
 - Wanted to send notifications that verify that things are working in case alerting is wrong
 - Provide nicer dashboard hos things are working
-![]
+![report](https://github.com/greenCircuit/cluster-checker/blob/main/imgs/report.png?raw=true)
 
 ## TODO
-send request to endpoints to verify that thing are working
+send request to endpoints to verify that thing are working. Will add endpoints to Values.yaml file so don't hard code any urls
