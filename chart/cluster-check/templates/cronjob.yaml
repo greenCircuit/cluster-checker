@@ -20,8 +20,8 @@ spec:
               - name: {{ $key }}
                 values: {{ $value }}
             {{- end }}
-            {{ if .Values.secretsEnv }}
-            {{- range $name, $value := .Values.secrets}}
+            {{ if .Values.secretsEnv.enabled }}
+            {{- range $name, $value := .Values.secretsEnv.secrets }}
               - name: {{ $value }} 
                 valueFrom:
                   secretKeyRef:
