@@ -16,6 +16,11 @@ git-leaks:
 semver:
   extends: .make-semver
 
+chart:
+  extends: .check-helm
+  variables:
+    CHECK_PATH: "chart/cluster-check"
+
 create-changelog:
   extends: .changelog
   variables:
