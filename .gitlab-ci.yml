@@ -9,6 +9,8 @@ include:
     file: pipelines/security.yaml
   - project: homelab/pipeline-catalog
     file: pipelines/stages.yaml
+  - project: homelab/pipeline-catalog
+    file: pipelines/k8s.yaml
 
 git-leaks:
   extends: .secrets_scan
