@@ -14,10 +14,23 @@ spec:
             sidecar.istio.io/inject: "false"
         spec:
           serviceAccountName: robot-account 
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop:
+              - ALL
           containers:
           - name: runner 
             image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
             imagePullPolicy: {{ .Values.image.pullPolicy }}
+            resources:
+              requests:
+                memory: "64Mi"
+                cpu: "10"
+              limits:
+                memory: "128Mi"
+                cpu: "128m"
             command: {{ .Values.command | toJson }} 
             args: {{ .Values.args | toJson }}
             env:

@@ -54,4 +54,7 @@ def send_slack():
         print('Notification sent successfully.')
     else:
         print(f'Failed to send notification. Status code: {response.status_code}, Response: {response.text}')
-send_slack()
+
+# sending notification only when env specified 
+if os.environ["NOTIFY"] == "true":    
+    send_slack()

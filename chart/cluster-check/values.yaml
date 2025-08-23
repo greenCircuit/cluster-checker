@@ -22,7 +22,8 @@ secretsEnv:
 
 env: 
   OUTPUT_DIR: "/shared"       # TODO: where things will be saved
-  NOTIFY: "true"        # TODO: allow notifications or not 
+  NOTIFY: "true"              # TODO: allow notifications or not, used for testing in case just want to test tests
+
 
 # TODO save reports on host 
-hostPath: "/myHostDir"    
+savePath: "/myHostDir"    
