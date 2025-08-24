@@ -14,10 +14,14 @@ spec:
           annotations:
             sidecar.istio.io/inject: "false"
         spec:
+          automountServiceAccountToken: false
           serviceAccountName: robot-account 
           securityContext:
             allowPrivilegeEscalation: false
+            privileged: false
             runAsNonRoot: true
+            runAsUser: 1001          
+            runAsGroup: 1001         
             capabilities:
               drop:
               - ALL
@@ -37,7 +41,7 @@ spec:
             env:
             {{- range $key, $value := .Values.env }}
               - name: {{ $key }}
-                value: {{ $value | quote}}
+                value: {{ $value | quote }}
             {{- end }}
             {{ if .Values.secretsEnv.enabled }}
             {{- range $name, $value := .Values.secretsEnv.secrets }}
