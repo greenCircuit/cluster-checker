@@ -8,7 +8,7 @@ spec:
   schedule: "{{ .Values.schedule }}"
   jobTemplate:
     spec:
-      activeDeadlineSeconds: "{{ .Values.activeDeadlineSeconds }}"
+      activeDeadlineSeconds: {{ .Values.activeDeadlineSeconds }}
       template:
         metadata:
           annotations:
@@ -37,7 +37,7 @@ spec:
             env:
             {{- range $key, $value := .Values.env }}
               - name: {{ $key }}
-                value: {{ $value }}
+                value: {{ $value | quote}}
             {{- end }}
             {{ if .Values.secretsEnv.enabled }}
             {{- range $name, $value := .Values.secretsEnv.secrets }}
