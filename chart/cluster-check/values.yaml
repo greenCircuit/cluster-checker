@@ -20,9 +20,12 @@ secretsEnv:
   secrets:  
     robot-secrets: SLACK_URL
 
+# Set timer for a job, in case it keeps running for some reason
+activeDeadlineSeconds: 60
+
 env: 
+  NOTIFY: "true"              # allow notifications or not, used for testing in case just want to test tests
   OUTPUT_DIR: "/shared"       # TODO: where things will be saved
-  NOTIFY: "true"              # TODO: allow notifications or not, used for testing in case just want to test tests
 
 
 # TODO save reports on host 

@@ -1,3 +1,4 @@
+# Running tests inside deployment so can test if changes are working
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,3 +25,13 @@ spec:
         command: ["/bin/bash", "-c"]
         args: 
         - sleep infinity
+        env:
+          - name: NOTIFY
+            value: "false"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "10m"
+          limits:
+            memory: "128Mi"
+            cpu: "128m"

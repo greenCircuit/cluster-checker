@@ -1,3 +1,4 @@
+*** Settings ***
 *** Keywords ***
 # get pass and fail statuses and log it in string
 Log Statuses
@@ -15,7 +16,4 @@ Save Statuses
     [Arguments]  ${status}  ${file_name}
     ${fail}=  Get From Dictionary  ${status}  fail 
     ${json_statuses}=  Json Status  ${fail}  
-    Create File    ${file_name}    ${json_statuses}
-
-
-    
+    Create File    ${file_name}    ${json_statuses} 
